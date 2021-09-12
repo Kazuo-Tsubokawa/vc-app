@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 
+use function Ramsey\Uuid\v1;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,4 +17,28 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/route/hello', function () { 
+    return '<h1>Hello from Route!<h1>';
+});
+
+Route::get('/view/hello', function() {
+    return view('messeage.hello');
+});
+
+Route::get('/view/var', function(){
+    
+    return view('messeage.var', ['variable' => 'Hello from wed.php']);
+});
+
+Route::get('/view/word/{msg}', function($msg){
+    return view('messeage.word',['msg' => $msg]);
+});
+
+Route::get('/view/word2/{name}/{msg}', function($name, $msg){
+    return view('messeage.word2',[
+        'name' => $name,
+        'msg' => $msg
+    ]);
 });
